@@ -1,0 +1,15 @@
+---
+- name: Create a directory if it does not exist
+  ansible.builtin.file:
+    path: /opt/kafka-{{ item }}
+    state: directory
+  loop: "{{ kafka_cli_tools_versions }}"
+
+- name: Install Kafka CLI tools
+  ansible.builtin.unarchive:
+    src: https://s3-us-west-2.amazonaws.com/kafka-packages/kafka_2.12-{{ item }}.tgz
+    dest: /opt/kafka-{{ item }}
+    remote_src: yes
+    extra_opts:
+      - --strip-components=1
+  loop: "{{ kafka_cli_tools_versions }}"

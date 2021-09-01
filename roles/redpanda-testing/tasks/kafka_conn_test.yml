@@ -1,0 +1,9 @@
+---
+- name: lots of connections
+  ansible.builtin.git:
+    repo: https://github.com/jcsp/kafka_conn_test
+    dest: /opt/kafka_conn_test
+    update: no
+
+- name: build kafka conn test
+  command: chdir=/opt/kafka_conn_test cargo build --release

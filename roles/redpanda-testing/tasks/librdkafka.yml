@@ -1,0 +1,12 @@
+---
+- name: clone librdkafka
+  ansible.builtin.git:
+    repo: https://github.com/edenhill/librdkafka
+    dest: /opt/librdkafka
+    update: no
+
+- name: configure librdkafka
+  command: chdir=/opt/librdkafka ./configure
+
+- name: build librdkafka
+  command: chdir=/opt/librdkafka make -j4

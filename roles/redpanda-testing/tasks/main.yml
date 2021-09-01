@@ -1,2 +1,21 @@
 ---
-# tasks file for redpanda-testing
+- name: install dependencies
+  apt:
+    name:
+      - git
+      - rustc
+      - cargo
+      - cmake
+      - build-essential
+      - golang-go
+      - zlib1g-dev
+      - libssl-dev
+      - libsasl2-dev
+      - libzstd-dev
+      - default-jdk
+    state: present
+
+- include: kafka_conn_test.yml
+- include: librdkafka.yml
+- include: kcl.yml
+- include: kafka_cli_tools.yml

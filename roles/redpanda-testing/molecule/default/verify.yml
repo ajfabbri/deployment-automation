@@ -1,10 +1,18 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
-- name: Verify
+- name: verify kafka cli tools
   hosts: all
   gather_facts: false
   tasks:
-  - name: Example assertion
-    assert:
-      that: true
+  - name: verify kafka tools installation
+    include_tasks: verify_kafka_tools.yml
+    loop:
+      - 2.3.1
+      - 2.4.1
+      - 2.5.0
+      - 2.7.0
+  - name: verify tools are built
+    include_tasks: verify_executable.yml
+    loop:
+      - /opt/librdkafka/examples/rdkafka_performance
+      - /opt/kafka_conn_test/target/release/conn_test
+      - /opt/kcl/kcl

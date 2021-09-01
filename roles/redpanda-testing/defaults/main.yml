@@ -1,2 +1,6 @@
 ---
-# defaults file for redpanda-testing
+kafka_cli_tools_versions:
+  - 2.3.1
+  - 2.4.1
+  - 2.5.0
+  - 2.7.0

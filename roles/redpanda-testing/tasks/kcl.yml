@@ -1,0 +1,9 @@
+---
+- name: clone kcl
+  ansible.builtin.git:
+    repo: https://github.com/twmb/kcl
+    dest: /opt/kcl
+    update: no
+
+- name: build kcl
+  command: chdir=/opt/kcl go build

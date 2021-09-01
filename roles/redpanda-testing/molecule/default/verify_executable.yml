@@ -1,0 +1,9 @@
+---
+- name: stat file
+  stat:
+    path: "{{ item }}"
+  register: st
+
+- name: verify file is executable
+  assert:
+    that: st.stat.executable

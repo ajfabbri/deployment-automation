@@ -1,0 +1,7 @@
+---
+- name: capture kafka-topics.sh version
+  command: /opt/kafka-{{ item }}/bin/kafka-topics.sh --version
+  register: command_output
+- name: verify version command output
+  assert:
+    that: "'{{ item }} (Commit:' in command_output.stdout"
