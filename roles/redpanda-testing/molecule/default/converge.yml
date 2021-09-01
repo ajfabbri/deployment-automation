@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include redpanda-testing"
+      include_role:
+        name: "redpanda-testing"
