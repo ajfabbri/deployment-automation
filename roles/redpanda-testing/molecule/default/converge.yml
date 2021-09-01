@@ -1,4 +1,13 @@
 ---
+- name: Install python
+  hosts: all
+  gather_facts: false
+  pre_tasks:
+    - name: Update apt
+      raw: apt update
+    - name: Install python
+      raw: apt install -y python3
+
 - name: Converge
   hosts: all
   tasks:
