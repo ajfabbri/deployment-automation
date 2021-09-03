@@ -1,0 +1,9 @@
+---
+- name: clone openmessaging-benchmark
+  ansible.builtin.git:
+    repo: https://github.com/vectorizedio/openmessaging-benchmark
+    dest: /opt/openmessaging-benchmark
+    update: no
+
+- name: build openmessaging-benchmark
+  command: chdir=/opt/openmessaging-benchmark mvn clean install -Dlicense.skip=true

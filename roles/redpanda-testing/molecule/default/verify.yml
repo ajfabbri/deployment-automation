@@ -10,9 +10,15 @@
       - 2.4.1
       - 2.5.0
       - 2.7.0
-  - name: verify tools are built
+  - name: verify tools are built and executable
     include_tasks: verify_executable.yml
     loop:
       - /opt/librdkafka/examples/rdkafka_performance
       - /opt/kafka_conn_test/target/release/conn_test
       - /opt/kcl/kcl
+      - /opt/openmessaging-benchmark/bin/benchmark
+  - name: verify files exist
+    include_tasks: verify_exists.yml
+    loop:
+      - /opt/openmessaging-benchmark/benchmark-framework/target/benchmark-framework-0.0.1-SNAPSHOT.jar
+      - /opt/openmessaging-benchmark/driver-redpanda/target/driver-redpanda-0.0.1-SNAPSHOT.jar

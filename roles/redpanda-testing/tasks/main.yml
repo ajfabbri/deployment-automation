@@ -13,9 +13,11 @@
       - libsasl2-dev
       - libzstd-dev
       - default-jdk
+      - maven
     state: present
 
 - include: kafka_conn_test.yml
 - include: librdkafka.yml
 - include: kcl.yml
 - include: kafka_cli_tools.yml
+- include: openmessaging-benchmark.yml

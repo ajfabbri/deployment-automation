@@ -1,0 +1,9 @@
+---
+- name: stat file
+  stat:
+    path: "{{ item }}"
+  register: st
+
+- name: verify file exists
+  assert:
+    that: st.stat.exists
