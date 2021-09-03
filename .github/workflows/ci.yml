@@ -1,0 +1,20 @@
+---
+name: molecule test
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt
+      - name: Test redpanda-testing role
+        run: |
+          molecule create
+          molecule converge
+          molecule verify
+          molecule destroy
+        working-directory: roles/redpanda-testing
