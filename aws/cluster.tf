@@ -12,9 +12,11 @@ resource "aws_instance" "redpanda" {
   instance_type          = var.instance_type
   key_name               = aws_key_pair.ssh.key_name
   vpc_security_group_ids = [aws_security_group.node_sec_group.id]
-  tags = {
+  tags = merge(var.user_tags,
+  {
     owner : local.deployment_id
-  }
+  })
+
 
   connection {
     user        = var.distro_ssh_user[var.distro]
@@ -29,9 +31,10 @@ resource "aws_instance" "prometheus" {
   instance_type          = var.prometheus_instance_type
   key_name               = aws_key_pair.ssh.key_name
   vpc_security_group_ids = [aws_security_group.node_sec_group.id]
-  tags = {
+  tags = merge(var.user_tags,
+  {
     owner : local.deployment_id
-  }
+  })
 
   connection {
     user        = var.distro_ssh_user[var.distro]
@@ -46,9 +49,10 @@ resource "aws_instance" "client" {
   instance_type         = var.client_instance_type
   key_name              = aws_key_pair.ssh.key_name
   vpc_security_group_ids = [aws_security_group.node_sec_group.id]
-  tags = {
+  tags = merge(var.user_tags,
+  {
     owner : local.deployment_id
-  }
+  })
 
   connection {
     user        = var.distro_ssh_user[var.client_distro]
@@ -59,9 +63,10 @@ resource "aws_instance" "client" {
 
 resource "aws_security_group" "node_sec_group" {
   name = "${local.deployment_id}-node-sec-group"
-  tags = {
+  tags = merge(var.user_tags,
+  {
     owner : local.deployment_id
-  }
+  })
   description = "redpanda ports"
 
   # SSH access from anywhere

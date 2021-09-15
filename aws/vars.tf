@@ -9,6 +9,12 @@ variable "nodes" {
   default     = "3"
 }
 
+variable "user_tags" {
+  description = "User resource tags"
+  type        = map(string)
+  default     = { }
+}
+
 variable "distro" {
   description = "The default distribution to base the cluster on"
   default     = "ubuntu-focal"

@@ -57,6 +57,7 @@ No Modules.
 | nodes | The number of nodes to deploy | `number` | `"3"` | no |
 | prometheus\_instance\_type | Instant type of the prometheus/grafana node | `string` | `"c5.2xlarge"` | no |
 | public\_key\_path | The public key used to ssh to the hosts | `string` | `"~/.ssh/id_rsa.pub"` | no |
+| user\_tags | Optional tags to add to ec2 resources. | `map(string)` | `{}` | no |
 
 ### Client Inputs
 By default, no client VMs are provisioned. If you want to also provision client
